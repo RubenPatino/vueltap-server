@@ -8,11 +8,11 @@ app.get('/', (req, res) => {
 
 app.get('/user', (req, res) => {
 
-    res.json({
+    res.json([{
         status: true,
         message: "Felicitaciones has finalizado tu proceso de registro exitosamente.  Procederemos con un chequeo de seguridad de toda la información suministrada. Si eres seleccionado te llegará un mensaje de texto invitándote a una capacitación. Este proceso tardará una semana aproximadamente."
 
-    });
+    }]);
 
 });
 
