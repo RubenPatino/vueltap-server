@@ -10,7 +10,7 @@ app.get('/user', (req, res) => {
 
     res.json({
         status: true,
-        data: 'Bienvenido'
+        message: 'Bienvenido'
     });
 
 });
@@ -38,7 +38,7 @@ app.post('/user/add', (req, res) => {
         }
         res.json({
             status: true,
-            data
+            message: "Felicitaciones has finalizado tu proceso de registro exitosamente.  Procederemos con un chequeo de seguridad de toda la información suministrada. Si eres seleccionado te llegará un mensaje de texto invitándote a una capacitación. Este proceso tardará una semana aproximadamente."
         });
     });
 
