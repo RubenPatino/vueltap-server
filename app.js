@@ -15,6 +15,15 @@ app.use(bodyParser.json());
 //Routes
 app.use(require('./routes/index'));
 
+//Mongo
+const opts = { useNewUrlParser: true, useCreateIndex: true };
+
+mongoose.connect(process.env.URI, opts).then(() => {
+    console.log(`Conectado a mongo, uri : ${process.env.URI}`);
+}).catch((err) => {
+    throw err;
+});
+
 app.listen(process.env.PORT, (err => {
     if (err) throw err;
     console.log(`Recibiendo peticiones del puerto : ${process.env.PORT}`);
