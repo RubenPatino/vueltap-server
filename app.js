@@ -1,5 +1,5 @@
 require('./config/config');
-const mongoose = require('mongoose');
+
 const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
@@ -16,13 +16,8 @@ app.use(bodyParser.json());
 app.use(require('./routes/index'));
 
 //Mongo
-const opts = { useNewUrlParser: true, useCreateIndex: true };
+require('./db/connect')
 
-mongoose.connect(process.env.URI, opts).then(() => {
-    console.log(`Conectado a mongo, uri : ${process.env.URI}`);
-}).catch((err) => {
-    throw err;
-});
 
 app.listen(process.env.PORT, (err => {
     if (err) throw err;

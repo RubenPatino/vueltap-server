@@ -1,18 +1,39 @@
 const userSchema = require('../models/user')
 const express = require('express');
 const app = express();
+const User = require('../models/user');
 
 app.get('/', (req, res) => {
 
 });
 
-app.get('/user', (req, res) => {
+app.get('/user/check/:email', (req, res) => {
+    let email = req.params.email;
 
-    res.json([{
-        status: true,
-        message: "Felicitaciones has finalizado tu proceso de registro exitosamente.  Procederemos con un chequeo de seguridad de toda la información suministrada. Si eres seleccionado te llegará un mensaje de texto invitándote a una capacitación. Este proceso tardará una semana aproximadamente."
+    User.findOne({ email: new RegExp('^' + email + '$', 'i') }, (err, dataDB) => {
+        if (err) {
+            return res.status(500).json({
+                status: false,
+                message: err
+            });
+        };
+        if (dataDB === null) {
+            return res.status(400).json({
+                status: false,
+                message: 'No se encotraron datos.'
+            });
+        }
+        res.json({
+            status: true,
+            user: dataDB
+        });
+    });
 
-    }]);
+    // res.json([{
+    //     status: true,
+    //     message: "Felicitaciones has finalizado tu proceso de registro exitosamente.  Procederemos con un chequeo de seguridad de toda la información suministrada. Si eres seleccionado te llegará un mensaje de texto invitándote a una capacitación. Este proceso tardará una semana aproximadamente.",
+    //     email
+    // }]);
 
 });
 
@@ -36,7 +57,7 @@ app.post('/user/add', (req, res) => {
                 status: false,
                 err
             });
-        }
+        };
         res.json({
             status: true,
             message: "Felicitaciones has finalizado tu proceso de registro exitosamente.  Procederemos con un chequeo de seguridad de toda la información suministrada. Si eres seleccionado te llegará un mensaje de texto invitándote a una capacitación. Este proceso tardará una semana aproximadamente."
