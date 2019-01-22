@@ -14,7 +14,7 @@ app.get('/user/check/:email', (req, res) => {
         if (err) {
             return res.status(500).json({
                 status: false,
-                message: err
+                messages: err
             });
         };
         if (dataDB === null) {

@@ -20,17 +20,23 @@ let userSchema = new Schema({
         type: String,
         required: [true, 'Por favor, digite su nombre.']
     },
-    last_name: {
+    lastName: {
         type: String
     },
     phone: {
-        type: String
+        type: String,
+        required: [true, 'Por favor, digite su número telefónico.']
+    },
+    checkPhone: {
+        type: Boolean,
+        default: false
     },
     role: {
         type: String,
-        default: 'USER',
+        default: 'MESSENGER',
         enum: roles
     },
+
     img: {
         type: String,
         url: String
@@ -39,9 +45,13 @@ let userSchema = new Schema({
         type: Boolean,
         default: true
     },
-    password: {
-        type: String,
-        required: [true, 'Por favor, digite una clave.']
+    checkInfo: {
+        type: Boolean,
+        default: false
+    },
+    checkTraining: {
+        type: Boolean,
+        default: false
     }
 });
 
