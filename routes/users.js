@@ -18,7 +18,7 @@ app.get('/user/check/:email', (req, res) => {
             });
         };
         if (dataDB === null) {
-            return res.status(400).json({
+            return res.json({
                 status: false,
                 message: 'No se encotraron datos.'
             });
@@ -45,10 +45,7 @@ app.post('/user/add', (req, res) => {
         name: body.name,
         last_name: body.lastName,
         phone: body.phone,
-        role: body.role,
-        img: body.img,
-        state: body.state,
-        password: body.password
+        img: body.img
     });
 
     user.save((err, data) => {
