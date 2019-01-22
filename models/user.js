@@ -48,7 +48,7 @@ let userSchema = new Schema({
     },
     checkInfo: {
         type: Boolean,
-        default: [false, 'Hola falso']
+        default: false
     },
     checkTraining: {
         type: Boolean,
