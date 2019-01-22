@@ -21,7 +21,8 @@ let userSchema = new Schema({
         required: [true, 'Por favor, digite su nombre.']
     },
     lastName: {
-        type: String
+        type: String,
+        required: [true, 'Por favor, digite su apellido.']
     },
     phone: {
         type: String,
@@ -52,6 +53,10 @@ let userSchema = new Schema({
     checkTraining: {
         type: Boolean,
         default: false
+    },
+    address: {
+        type: String,
+        required: [true, 'Por favor, digite su dirección.']
     }
 });
 
