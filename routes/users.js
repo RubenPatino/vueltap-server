@@ -43,9 +43,10 @@ app.post('/user/add', (req, res) => {
     let user = new userSchema({
         email: body.email,
         name: body.name,
-        last_name: body.lastName,
+        lastName: body.lastName,
+        address: body.address,
         phone: body.phone,
-        img: body.img
+        identificationNumber: body.identificationNumber
     });
 
     user.save((err, data) => {
