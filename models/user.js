@@ -58,6 +58,10 @@ let userSchema = new Schema({
         type: Boolean,
         default: false
     },
+    checkCar: {
+        type: Boolean,
+        default: false
+    },
     checkTraining: {
         type: Boolean,
         default: false
