@@ -30,6 +30,7 @@ app.post('/user/upload/cedula', (req, res) => {
     let archivoCortado = image.name.split('.');
     let extension = archivoCortado[archivoCortado.length - 1];
     let extensionesPermitidas = ['jpg', 'png', 'gif', 'jpeg'];
+
     if (extensionesPermitidas.indexOf(extension) < 0) {
         return res.status(400).json({
             status: false,
