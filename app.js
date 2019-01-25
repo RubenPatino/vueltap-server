@@ -21,6 +21,7 @@ require('./db/connect')
 
 //public
 app.use(express.static(path.resolve(__dirname, './public')));
+app.use(express.static(path.resolve(__dirname, './upload/rr@gmail.com')));
 
 
 app.listen(process.env.PORT, (err => {
