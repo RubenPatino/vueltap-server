@@ -240,7 +240,7 @@ app.post('/user/add', (req, res) => {
         if (err) {
             return res.status(500).json({
                 status: false,
-                err
+                message: err.message
             });
         };
         res.json({
