@@ -231,7 +231,7 @@ app.post('/user/add', (req, res) => {
         address: body.address,
         urlAddress: body.urlAddress,
         phone: body.phone,
-        dniNumbre: body.dniNumber,
+        dniNumber: body.dniNumber,
         urlDniFront: body.urlDniFront,
         urlDniBack: body.urlDniBack
     });
