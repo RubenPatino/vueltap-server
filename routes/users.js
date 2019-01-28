@@ -32,7 +32,7 @@ app.post('/user/upload/dni/front', (req, res) => {
     let extensionesPermitidas = ['jpg', 'png', 'gif', 'jpeg'];
 
     if (extensionesPermitidas.indexOf(extension) < 0) {
-        return res.status(400).json({
+        return res.json({
             status: false,
             message: 'Extensiones permitidas.' + extensionesPermitidas.join(',')
         });
@@ -114,7 +114,7 @@ app.post('/user/upload/domicile', (req, res) => {
         });
     }
     if (!req.files) {
-        return res.status(400).json({
+        return res.json({
             status: false,
             message: 'No se ha cargado ningun archivo'
         });
@@ -128,7 +128,7 @@ app.post('/user/upload/domicile', (req, res) => {
     let extensionesPermitidas = ['jpg', 'png', 'gif', 'jpeg'];
 
     if (extensionesPermitidas.indexOf(extension) < 0) {
-        return res.status(400).json({
+        return res.json({
             status: false,
             message: 'Extensiones permitidas.' + extensionesPermitidas.join(',')
         });
@@ -176,7 +176,7 @@ app.post('/user/upload/domicilio/:email', (req, res) => {
     let extensionesPermitidas = ['jpg', 'png', 'gif', 'jpeg'];
 
     if (extensionesPermitidas.indexOf(extension) < 0) {
-        return res.status(400).json({
+        return res.json({
             status: false,
             message: 'Extensiones permitidas.' + extensionesPermitidas.join(',')
         });
@@ -187,25 +187,26 @@ app.post('/user/upload/domicilio/:email', (req, res) => {
     };
 
     image.mv(`${dir}/domicilio.jpg`, function(err) {
-        if (err)
-            return res.status(500).send(err);
-
+        if (err) {
+            return res.json({
+                status: false,
+                message: err.message
+            });
+        }
         res.json({
             status: true,
             message: dir
         });
     });
 });
-
-
 app.get('/user/check/:email', (req, res) => {
     let email = req.params.email;
 
     User.findOne({ email: new RegExp('^' + email + '$', 'i') }, (err, dataDB) => {
         if (err) {
-            return res.status(500).json({
+            return res.json({
                 status: false,
-                message: err
+                message: err.message
             });
         };
         if (dataDB === null) {
@@ -220,7 +221,6 @@ app.get('/user/check/:email', (req, res) => {
         });
     });
 });
-
 app.post('/user/add', (req, res) => {
     let body = req.body;
 
@@ -238,7 +238,7 @@ app.post('/user/add', (req, res) => {
 
     user.save((err, data) => {
         if (err) {
-            return res.status(500).json({
+            return res.json({
                 status: false,
                 message: err.message
             });
