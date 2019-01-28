@@ -28,13 +28,25 @@ let userSchema = new Schema({
         type: String,
         required: [true, 'Por favor, digite su dirección.']
     },
+    urlAddress: {
+        type: String,
+        required: [true, 'Por favor, digite su dirección.']
+    },
     phone: {
         type: String,
         required: [true, 'Por favor, digite su número telefónico.']
     },
-    identificationNumber: {
+    dniNumber: {
         type: String,
         required: [true, 'Por favor, digite su número de identificación.']
+    },
+    urlDniFront: {
+        type: String,
+        required: [true, 'Por favor, se requiere url de su identificación.']
+    },
+    urlDniBack: {
+        type: String,
+        required: [true, 'Por favor, se requiere url de su identificación.']
     },
     checkPhone: {
         type: Boolean,
@@ -54,17 +66,9 @@ let userSchema = new Schema({
         type: Boolean,
         default: true
     },
-    checkInfo: {
-        type: Boolean,
-        default: false
-    },
-    checkCar: {
-        type: Boolean,
-        default: false
-    },
-    checkTraining: {
-        type: Boolean,
-        default: false
+    checkIn: {
+        type: String,
+        default: "checkInfo"
     }
 });
 

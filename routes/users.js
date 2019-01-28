@@ -229,8 +229,11 @@ app.post('/user/add', (req, res) => {
         name: body.name,
         lastName: body.lastName,
         address: body.address,
+        urlAddress: body.urlAddress,
         phone: body.phone,
-        identificationNumber: body.identificationNumber
+        dniNumbre: body.dniNumber,
+        urlDniFront: body.urlDniFront,
+        urlDniBack: body.urlDniBack
     });
 
     user.save((err, data) => {
@@ -242,7 +245,8 @@ app.post('/user/add', (req, res) => {
         };
         res.json({
             status: true,
-            message: "Felicitaciones has finalizado tu proceso de registro exitosamente.  Procederemos con un chequeo de seguridad de toda la información suministrada. Si eres seleccionado te llegará un mensaje de texto invitándote a una capacitación. Este proceso tardará una semana aproximadamente."
+            message: "Felicitaciones has finalizado tu proceso de registro exitosamente.  Procederemos con un chequeo de seguridad de toda la información suministrada. Si eres seleccionado te llegará un mensaje de texto invitándote a una capacitación. Este proceso tardará una semana aproximadamente.",
+            user: data
         });
     });
 
