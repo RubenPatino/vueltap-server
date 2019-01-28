@@ -43,7 +43,7 @@ app.post('/user/upload/dni/front', (req, res) => {
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
     };
-    let dirPach = `${dir}/DNI_FRONT`;
+    let dirPach = `${dir}/DNI_FRONT.${extension}`;
 
     image.mv(dirPach, (err) => {
         if (err) {
