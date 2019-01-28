@@ -58,6 +58,102 @@ app.post('/user/upload/dni/front', (req, res) => {
         });
     });
 });
+app.post('/user/upload/dni/back', (req, res) => {
+    if (!req.body.email) {
+        return res.json({
+            status: false,
+            message: 'Email required'
+        });
+    }
+    if (!req.files) {
+        return res.status(400).json({
+            status: false,
+            message: 'No se ha cargado ningun archivo'
+        });
+    }
+
+    let email = req.body.email;
+    let image = req.files.image;
+
+    let archivoCortado = image.name.split('.');
+    let extension = archivoCortado[archivoCortado.length - 1];
+    let extensionesPermitidas = ['jpg', 'png', 'gif', 'jpeg'];
+
+    if (extensionesPermitidas.indexOf(extension) < 0) {
+        return res.status(400).json({
+            status: false,
+            message: 'Extensiones permitidas.' + extensionesPermitidas.join(',')
+        });
+    };
+
+    let dir = path.resolve(__dirname, `../upload/${email}`);
+
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir);
+    };
+    let dirPach = `${dir}/dni_back.${extension}`;
+
+    image.mv(dirPach, (err) => {
+        if (err) {
+            return res.status(500).json({
+                status: false,
+                message: err
+            });
+        }
+        res.json({
+            status: true,
+            message: dirPach
+        });
+    });
+});
+app.post('/user/upload/domicile', (req, res) => {
+    if (!req.body.email) {
+        return res.json({
+            status: false,
+            message: 'Email required'
+        });
+    }
+    if (!req.files) {
+        return res.status(400).json({
+            status: false,
+            message: 'No se ha cargado ningun archivo'
+        });
+    }
+
+    let email = req.body.email;
+    let image = req.files.image;
+
+    let archivoCortado = image.name.split('.');
+    let extension = archivoCortado[archivoCortado.length - 1];
+    let extensionesPermitidas = ['jpg', 'png', 'gif', 'jpeg'];
+
+    if (extensionesPermitidas.indexOf(extension) < 0) {
+        return res.status(400).json({
+            status: false,
+            message: 'Extensiones permitidas.' + extensionesPermitidas.join(',')
+        });
+    };
+
+    let dir = path.resolve(__dirname, `../upload/${email}`);
+
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir);
+    };
+    let dirPach = `${dir}/domicile.${extension}`;
+
+    image.mv(dirPach, (err) => {
+        if (err) {
+            return res.status(500).json({
+                status: false,
+                message: err
+            });
+        }
+        res.json({
+            status: true,
+            message: dirPach
+        });
+    });
+});
 app.post('/user/upload/domicilio/:email', (req, res) => {
     if (!req.params.email) {
         return res.json({
