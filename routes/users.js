@@ -10,7 +10,7 @@ const User = require('../models/user');
 app.use(fileUpload());
 
 
-app.post('/user/upload/cedula', (req, res) => {
+app.post('/user/upload/dni/front', (req, res) => {
     if (!req.body.email) {
         return res.json({
             status: false,
@@ -37,18 +37,24 @@ app.post('/user/upload/cedula', (req, res) => {
             message: 'Extensiones permitidas.' + extensionesPermitidas.join(',')
         });
     };
+
     let dir = path.resolve(__dirname, `../upload/${email}`);
+
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
     };
+    let dirPach = `${dir}/${image.name}`;
 
-    image.mv(`${dir}/cedula.jpg`, function(err) {
-        if (err)
-            return res.status(500).send(err);
-
+    image.mv(dirPach, (err) => {
+        if (err) {
+            return res.status(500).json({
+                status: false,
+                message: err
+            });
+        }
         res.json({
             status: true,
-            message: dir
+            message: dirPach
         });
     });
 });
@@ -72,6 +78,7 @@ app.post('/user/upload/domicilio/:email', (req, res) => {
     let archivoCortado = image.name.split('.');
     let extension = archivoCortado[archivoCortado.length - 1];
     let extensionesPermitidas = ['jpg', 'png', 'gif', 'jpeg'];
+
     if (extensionesPermitidas.indexOf(extension) < 0) {
         return res.status(400).json({
             status: false,
