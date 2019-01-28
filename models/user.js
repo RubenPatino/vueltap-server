@@ -68,7 +68,8 @@ let userSchema = new Schema({
     },
     checkIn: {
         type: String,
-        default: "checkInfo"
+        default: "validateInformation"
+            //state= 1: validateInformation, 2:validateTransport 3: validateTraining(capa), 4: validateFinished
     }
 });
 
