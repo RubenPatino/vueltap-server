@@ -69,7 +69,7 @@ let userSchema = new Schema({
     checkIn: {
         type: String,
         default: "validateInformation"
-            //state= 1: validateInformation, 2:validateTransport 3: validateTraining(capa), 4: validateFinished
+            //state= 1: validateInformation, 2 :validateFalse 3: validateTraining(capa), 4: validateTrue
     }
 });
 
