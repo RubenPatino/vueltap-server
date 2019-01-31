@@ -334,7 +334,7 @@ app.post('/user/upload/img/licence', (req, res) => {
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
     };
-    let dirPach = `${dir}/lycence.${extension}`;
+    let dirPach = `${dir}/licence.${extension}`;
 
     image.mv(dirPach, (err) => {
         if (err) {
