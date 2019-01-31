@@ -252,5 +252,151 @@ app.post('/user/add', (req, res) => {
 
 });
 
+//upload image lycence,property, soat.
+app.post('/user/upload/img/property', (req, res) => {
+    if (!req.body.email) {
+        return res.json({
+            status: false,
+            message: 'Email required'
+        });
+    }
+    if (!req.files) {
+        return res.json({
+            status: false,
+            message: 'No se ha cargado ningun archivo'
+        });
+    }
+
+    let email = req.body.email;
+    let image = req.files.image;
+
+    let archivoCortado = image.name.split('.');
+    let extension = archivoCortado[archivoCortado.length - 1];
+    let extensionesPermitidas = ['jpg', 'png', 'gif', 'jpeg'];
+
+    if (extensionesPermitidas.indexOf(extension) < 0) {
+        return res.json({
+            status: false,
+            message: 'Extensiones permitidas.' + extensionesPermitidas.join(',')
+        });
+    };
+
+    let dir = path.resolve(__dirname, `../upload/${email}`);
+
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir);
+    };
+    let dirPach = `${dir}/property.${extension}`;
+
+    image.mv(dirPach, (err) => {
+        if (err) {
+            return res.status(500).json({
+                status: false,
+                message: err.message
+            });
+        }
+        res.json({
+            status: true,
+            message: dirPach
+        });
+    });
+});
+app.post('/user/upload/img/lycence', (req, res) => {
+    if (!req.body.email) {
+        return res.json({
+            status: false,
+            message: 'Email required'
+        });
+    }
+    if (!req.files) {
+        return res.json({
+            status: false,
+            message: 'No se ha cargado ningun archivo'
+        });
+    }
+
+    let email = req.body.email;
+    let image = req.files.image;
+
+    let archivoCortado = image.name.split('.');
+    let extension = archivoCortado[archivoCortado.length - 1];
+    let extensionesPermitidas = ['jpg', 'png', 'gif', 'jpeg'];
+
+    if (extensionesPermitidas.indexOf(extension) < 0) {
+        return res.json({
+            status: false,
+            message: 'Extensiones permitidas.' + extensionesPermitidas.join(',')
+        });
+    };
+
+    let dir = path.resolve(__dirname, `../upload/${email}`);
+
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir);
+    };
+    let dirPach = `${dir}/lycence.${extension}`;
+
+    image.mv(dirPach, (err) => {
+        if (err) {
+            return res.status(500).json({
+                status: false,
+                message: err
+            });
+        }
+        res.json({
+            status: true,
+            message: dirPach
+        });
+    });
+});
+app.post('/user/upload/img/soat', (req, res) => {
+    if (!req.body.email) {
+        return res.json({
+            status: false,
+            message: 'Email required'
+        });
+    }
+    if (!req.files) {
+        return res.json({
+            status: false,
+            message: 'No se ha cargado ningun archivo'
+        });
+    }
+
+    let email = req.body.email;
+    let image = req.files.image;
+
+    let archivoCortado = image.name.split('.');
+    let extension = archivoCortado[archivoCortado.length - 1];
+    let extensionesPermitidas = ['jpg', 'png', 'gif', 'jpeg'];
+
+    if (extensionesPermitidas.indexOf(extension) < 0) {
+        return res.json({
+            status: false,
+            message: 'Extensiones permitidas.' + extensionesPermitidas.join(',')
+        });
+    };
+
+    let dir = path.resolve(__dirname, `../upload/${email}`);
+
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir);
+    };
+    let dirPach = `${dir}/soat.${extension}`;
+
+    image.mv(dirPach, (err) => {
+        if (err) {
+            return res.status(500).json({
+                status: false,
+                message: err
+            });
+        }
+        res.json({
+            status: true,
+            message: dirPach
+        });
+    });
+});
+
 
 module.exports = app;
