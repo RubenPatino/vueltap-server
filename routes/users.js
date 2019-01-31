@@ -301,7 +301,7 @@ app.post('/user/upload/img/property', (req, res) => {
         });
     });
 });
-app.post('/user/upload/img/lycence', (req, res) => {
+app.post('/user/upload/img/licence', (req, res) => {
     if (!req.body.email) {
         return res.json({
             status: false,
