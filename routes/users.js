@@ -224,6 +224,8 @@ app.get('/user/check/:email', (req, res) => {
 app.post('/user/add', (req, res) => {
     let body = req.body;
 
+
+    //  if(body.type===1){
     let user = new userSchema({
         email: body.email,
         name: body.name,
@@ -233,8 +235,13 @@ app.post('/user/add', (req, res) => {
         phone: body.phone,
         dniNumber: body.dniNumber,
         urlDniFront: body.urlDniFront,
-        urlDniBack: body.urlDniBack
+        urlDniBack: body.urlDniBack,
+        typeTransport: body.typeTransport
     });
+    //}
+
+
+
 
     user.save((err, data) => {
         if (err) {

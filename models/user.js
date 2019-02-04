@@ -62,6 +62,22 @@ let userSchema = new Schema({
         type: String,
         url: String
     },
+    typeTransport: {
+        type: Number,
+        default: 1
+    },
+    urlLicence: {
+        type: String
+    },
+    urlProperty: {
+        type: String
+    },
+    urlSoat: {
+        type: String
+    },
+    urlTecno: {
+        type: String
+    },
     state: {
         type: Boolean,
         default: true
