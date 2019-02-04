@@ -235,8 +235,7 @@ app.post('/user/add', (req, res) => {
         phone: body.phone,
         dniNumber: body.dniNumber,
         urlDniFront: body.urlDniFront,
-        urlDniBack: body.urlDniBack,
-        typeTransport: body.typeTransport
+        urlDniBack: body.urlDniBack
     });
     //}
 
