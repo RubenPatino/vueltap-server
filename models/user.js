@@ -66,6 +66,9 @@ let userSchema = new Schema({
         type: Number,
         default: 1
     },
+    plaque: {
+        type: String
+    },
     urlLicence: {
         type: String
     },

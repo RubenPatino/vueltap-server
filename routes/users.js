@@ -223,20 +223,44 @@ app.get('/user/check/:email', (req, res) => {
 });
 app.post('/user/add', (req, res) => {
     let body = req.body;
+    var user = null;
+    let type = body.typeTransport;
+    if (type == 1) {
+        user = new userSchema({
+            email: body.email,
+            name: body.name,
+            lastName: body.lastName,
+            address: body.address,
+            urlAddress: body.urlAddress,
+            phone: body.phone,
+            dniNumber: body.dniNumber,
+            urlDniFront: body.urlDniFront,
+            urlDniBack: body.urlDniBack
+        });
+    } else {
+        user = new userSchema({
+            email: body.email,
+            name: body.name,
+            lastName: body.lastName,
+            address: body.address,
+            urlAddress: body.urlAddress,
+            phone: body.phone,
+            dniNumber: body.dniNumber,
+            urlDniFront: body.urlDniFront,
+            urlDniBack: body.urlDniBack,
+            typeTransport: body.typeTransport,
+            plaque: body.placa,
+            urlLicence: body.urlLicence,
+            urlProperty: body.urlProperty,
+            urlSoat: body.urlSoat,
+            urlTecno: body.urlTecno
+        });
+
+    }
 
 
     //  if(body.type===1){
-    let user = new userSchema({
-        email: body.email,
-        name: body.name,
-        lastName: body.lastName,
-        address: body.address,
-        urlAddress: body.urlAddress,
-        phone: body.phone,
-        dniNumber: body.dniNumber,
-        urlDniFront: body.urlDniFront,
-        urlDniBack: body.urlDniBack
-    });
+
     //}
 
 
